@@ -126,11 +126,12 @@ class _SearchBody extends StatelessWidget {
           return Text(state.error);
         }
         if (state is SearchStateSuccess) {
-          return state.items.isEmpty
-              ? const Text('No Results')
-              : Expanded(child: _SearchResults(items: state.items));
+          return Expanded(child: _SearchResults(items: state.items));
         }
-        return const Text('Please type a location to search');
+        if (state is SearchStateEmpty) {
+          const Text('No Results');
+        }
+        return const Text('No Results');
       },
     );
   }
@@ -190,10 +191,11 @@ class _SearchResultItem extends StatelessWidget {
                 Row(
                     children: List.generate(
                         item.rate,
-                        (index) => const Icon(
-                              Icons.star,
-                              size: 12,
-                            ))),
+                            (index) =>
+                        const Icon(
+                          Icons.star,
+                          size: 12,
+                        ))),
                 const Text(
                   "Start from",
                   style: TextStyle(fontSize: 10.0),
