@@ -199,7 +199,7 @@ class _SearchResultItem extends StatelessWidget {
                   style: TextStyle(fontSize: 10.0),
                 ),
                 Text(
-                  item.price.toString(),
+                  'IDR ${item.price} per room per night',
                 ),
               ],
             ),
